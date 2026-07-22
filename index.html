@@ -1,39 +1,52 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="campus360">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html ng-app="campus360">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>College Dashboard</title>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="js/app.js"></script>
-    <title>Document</title>
-</head>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body ng-controller="dashboardcontroller">
-    <input type="text" ng-model="collegename">
+  <body ng-controller="dashboardController">
+    <h1>{{collegeName}}</h1>
+    <input
+      type="text"
+      ng-model="collegeName"
+      placeholder="Enter College Name"
+    />
+    <br /><br />
 
-        <h1>{{collegename}}</h1>
-        <p>Name:MERIN</p>
-        <p>Email:merin04@gmail.com</p>
-        <p>Reg No:FIT25MCA2039</p>
-        <p>College:FISAT</p>
-        <p>Course:MCA</p>
-        <p>Department:Computer Application</p>
-         <input type="text" ng-model="totalStudents">
-        <p>Total Student:{{totalStudents}}</p>
-         <input type="text" ng-model="totalFaculty">
-         <button ng-click="totalStudents= totalStudents +  1">Add Student</button>
-        <p>Total Faculty:{{totalFaculty}}</p>
-        <h2>Student List</h2>
-        <ul>
-            <li ng-repeat="student in students">
-                {{student}}
-            </li>
-        </ul>
-        
+    <input
+      type="number"
+      ng-model="totalStudents"
+      placeholder="Enter Total Students"
+    />
+    <p ng-class="{'green': totalStudents >= 1000, 'red': totalStudents < 1000}">
+      Total Students : {{totalStudents}}
+    </p>
+    <button ng-click="addStudent()">Add Student</button>
+    <br /><br />
+
+    <input
+      type="number"
+      ng-model="totalFaculty"
+      placeholder="Enter Total Faculty"
+    />
+    <p>Total Faculty : {{totalFaculty}}</p>
+    <button ng-click="addFaculty()">Add Faculty</button>
+
+    <h2>Student List</h2>
+
+    <button ng-click="showStudents = !showStudents">
+      {{ showStudents ? 'Hide Students' : 'Show Students' }}
+    </button>
+
+    <div ng-if="showDashboard">
+      <ul ng-show="showStudents">
+        <li ng-repeat="student in students">{{student}}</li>
+      </ul>
+    </div>
     
-
-
-</body>
-
+  </body>
 </html>
