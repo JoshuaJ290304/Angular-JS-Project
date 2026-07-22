@@ -51,6 +51,7 @@
         <li ng-repeat="student in students">{{student}}</li>
       </ul>
     </div>
+    <hr>
 
     <h2>Filter Demo</h2>
     <p>uppercase: {{collegeName | uppercase}}</p>
@@ -58,6 +59,51 @@
     <p>currency: {{fees | currency}}</p>
     <p>date: {{today | date:'dd/MM/yyyy'}}</p>
     <p>number: {{totalStudents | number:2}}</p>
+    <hr>
 
+    <h2>Selected Department</h2>
+    <label>Choose a department:</label>
+    <br><br>
+    <select ng-model="selectedDepartment" ng-options="department for department in departments">
+    </select>
+    <p>Selected Department: {{selectedDepartment}}</p>
+    <hr>
+    
+    <h2>Department Info</h2>
+    <div ng-switch="selectedDepartment">
+        <div ng-switch-when="Computer Science">
+            <h3>Computer Science Department</h3>
+            <p>Computer Science Department focuses on programming, algorithms, and software development.</p>
+        </div>
+        <div ng-switch-when="Electrical Engineering">
+            <h3>Electrical Engineering Department</h3>
+            <p>Electrical Engineering Department focuses on electrical systems, circuits, and power generation.</p>
+        </div>
+        <div ng-switch-when="Mechanical Engineering">
+            <h3>Mechanical Engineering Department</h3>
+            <p>Mechanical Engineering Department focuses on mechanics, thermodynamics, and manufacturing processes.</p>
+        </div>
+        <div ng-switch-when="Civil Engineering">
+            <h3>Civil Engineering Department</h3>
+            <p>Civil Engineering Department focuses on construction, structural analysis, and urban planning.</p>
+        </div>
+        <div ng-switch-when="Business Administration">
+            <h3>Business Administration Department</h3>
+            <p>Business Administration Department focuses on management, marketing, and entrepreneurship.</p>
+        </div>
+        <div ng-switch-default>
+            <h3>Please select a department to see the details.</h3>
+        </div>
+    </div>
+    <hr>
+
+    <h2>ng-init Demo</h2>
+    <div ng-init="collegeCode='CS101'; location='Angamaly'">
+        <p>College Code: {{collegeCode}}</p>
+        <p>College Location: {{location}}</p>
+    </div>
+    <hr>
+
+    
   </body>
 </html>

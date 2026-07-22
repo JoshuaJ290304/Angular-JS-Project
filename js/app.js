@@ -24,4 +24,14 @@ app.controller('dashboardController', function ($scope) {
     $scope.fees=25000;
     $scope.today=new Date();
 
+    $scope.departments = [
+        "Computer Science",
+        "Electrical Engineering",
+        "Mechanical Engineering",
+        "Civil Engineering",
+        "Business Administration"
+    ];
+
+    $scope.selectedDepartment = "Computer Science";
+
 });
