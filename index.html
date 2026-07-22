@@ -1,74 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html ng-app="campus360">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus360 Dashboard</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>College Dashboard</title>
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="js/app.js"></script>
-</head>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body ng-controller="dashboardcontroller">
+  <body ng-controller="dashboardController">
+    <h1>{{collegeName}}</h1>
+    <input
+      type="text"
+      ng-model="collegeName"
+      placeholder="Enter College Name"
+    />
+    <br /><br />
 
-    <h1>Campus360 Dashboard</h1>
-
-    <hr>
-
-    <label>College Name</label>
-    <br>
-    <input type="text" ng-model="collegename">
-
-    <h2>{{collegename}}</h2>
-
-    <hr>
-
-    <label>Total Students</label>
-    <br>
-    <input type="number" ng-model="totalStudents">
-
-    <button ng-click="totalStudents = totalStudents + 1">
-        Add Student
-    </button>
-
-    <p ng-class="{
-        'green': totalStudents >= 1000,
-        'red': totalStudents < 1000
-    }">
-        Total Students : {{totalStudents}}
+    <input
+      type="number"
+      ng-model="totalStudents"
+      placeholder="Enter Total Students"
+    />
+    <p ng-class="{'green': totalStudents >= 1000, 'red': totalStudents < 1000}">
+      Total Students : {{totalStudents}}
     </p>
+    <button ng-click="totalStudents=totalStudents+1">Add Student</button>
+    <br /><br />
 
-    <hr>
-
-    <label>Total Faculty</label>
-    <br>
-    <input type="number" ng-model="totalFaculty">
-
-    <button ng-click="totalFaculty = totalFaculty + 1">
-        Add Faculty
-    </button>
-
+    <input
+      type="number"
+      ng-model="totalFaculty"
+      placeholder="Enter Total Faculty"
+    />
     <p ng-style="{
-    
         'color': totalFaculty >= 100 ? 'green' : 'red',
-        'font-size':'25px',
-        'font-weight':'bold'}">
-        Total Faculty : {{totalFaculty}}
-    </p>
-
-    <hr>
+        'font-size': '18px',
+        'font-weight': 'bold'
+    }">Total Faculty : {{totalFaculty}}</p>
+    <button ng-click="totalFaculty=totalFaculty+1">Add Faculty</button>
 
     <h2>Student List</h2>
 
-    <ul>
-        <li ng-repeat="student in students">
-            {{student}}
-        </li>
-    </ul>
+    <button ng-click="showStudents = !showStudents">
+      {{ showStudents ? 'Hide Students' : 'Show Students' }}
+    </button>
 
-</body>
+    <div ng-if="showDashboard">
+      <ul ng-show="showStudents">
+        <li ng-repeat="student in students">{{student}}</li>
+      </ul>
+    </div>
 
+    <h2>Filter Demo</h2>
+    <p>uppercase: {{collegeName | uppercase}}</p>
+    <p>lowercase: {{collegeName | lowercase}}</p>
+    <p>currency: {{fees | currency}}</p>
+    <p>date: {{today | date:'dd/MM/yyyy'}}</p>
+    <p>number: {{totalStudents | number:2}}</p>
+
+  </body>
 </html>
