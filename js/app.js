@@ -34,4 +34,15 @@ app.controller('dashboardController', function ($scope) {
 
     $scope.selectedDepartment = "Computer Science";
 
+    $scope.isDisabled = true;
+
+    $scope.allowAdmission = function () {
+        $scope.isDisabled = false;
+    };
+
+    $scope.isReadOnly = true;
+    $scope.toggleReadOnly = function () {
+        $scope.isReadOnly = !$scope.isReadOnly;
+    };
+
 });

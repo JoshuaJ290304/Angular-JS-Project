@@ -104,6 +104,26 @@
     </div>
     <hr>
 
+    <button ng-click="allowAdmission()">
+        Allow Admission
+    </button>
+    <br><br>
+
+    <button ng-disabled="isDisabled">
+        Deny Admission
+    </button>
+    <hr>
     
+    <h2>ng-readOnly Demo</h2>
+    <label>College Id:</label>
+    <br><br>
+    <input type="text" ng-model="collegeId" ng-readonly="isReadOnly" />
+    <br><br>
+
+    <button ng-click="toggleReadOnly()">
+        Toggle Read-Only
+    </button> 
+    <p>ReadOnly Status: {{isReadOnly}}</p>  
+
   </body>
 </html>
