@@ -33,11 +33,15 @@
       ng-model="totalFaculty"
       placeholder="Enter Total Faculty"
     />
-    <p ng-style="{
+    <p
+      ng-style="{
         'color': totalFaculty >= 100 ? 'green' : 'red',
         'font-size': '18px',
         'font-weight': 'bold'
-    }">Total Faculty : {{totalFaculty}}</p>
+    }"
+    >
+      Total Faculty : {{totalFaculty}}
+    </p>
     <button ng-click="totalFaculty=totalFaculty+1">Add Faculty</button>
 
     <h2>Student List</h2>
@@ -51,7 +55,7 @@
         <li ng-repeat="student in students">{{student}}</li>
       </ul>
     </div>
-    <hr>
+    <hr />
 
     <h2>Filter Demo</h2>
     <p>uppercase: {{collegeName | uppercase}}</p>
@@ -59,71 +63,149 @@
     <p>currency: {{fees | currency}}</p>
     <p>date: {{today | date:'dd/MM/yyyy'}}</p>
     <p>number: {{totalStudents | number:2}}</p>
-    <hr>
+    <hr />
 
     <h2>Selected Department</h2>
     <label>Choose a department:</label>
-    <br><br>
-    <select ng-model="selectedDepartment" ng-options="department for department in departments">
-    </select>
+    <br /><br />
+    <select
+      ng-model="selectedDepartment"
+      ng-options="department for department in departments"
+    ></select>
     <p>Selected Department: {{selectedDepartment}}</p>
-    <hr>
-    
+    <hr />
+
     <h2>Department Info</h2>
     <div ng-switch="selectedDepartment">
-        <div ng-switch-when="Computer Science">
-            <h3>Computer Science Department</h3>
-            <p>Computer Science Department focuses on programming, algorithms, and software development.</p>
-        </div>
-        <div ng-switch-when="Electrical Engineering">
-            <h3>Electrical Engineering Department</h3>
-            <p>Electrical Engineering Department focuses on electrical systems, circuits, and power generation.</p>
-        </div>
-        <div ng-switch-when="Mechanical Engineering">
-            <h3>Mechanical Engineering Department</h3>
-            <p>Mechanical Engineering Department focuses on mechanics, thermodynamics, and manufacturing processes.</p>
-        </div>
-        <div ng-switch-when="Civil Engineering">
-            <h3>Civil Engineering Department</h3>
-            <p>Civil Engineering Department focuses on construction, structural analysis, and urban planning.</p>
-        </div>
-        <div ng-switch-when="Business Administration">
-            <h3>Business Administration Department</h3>
-            <p>Business Administration Department focuses on management, marketing, and entrepreneurship.</p>
-        </div>
-        <div ng-switch-default>
-            <h3>Please select a department to see the details.</h3>
-        </div>
+      <div ng-switch-when="Computer Science">
+        <h3>Computer Science Department</h3>
+        <p>
+          Computer Science Department focuses on programming, algorithms, and
+          software development.
+        </p>
+      </div>
+      <div ng-switch-when="Electrical Engineering">
+        <h3>Electrical Engineering Department</h3>
+        <p>
+          Electrical Engineering Department focuses on electrical systems,
+          circuits, and power generation.
+        </p>
+      </div>
+      <div ng-switch-when="Mechanical Engineering">
+        <h3>Mechanical Engineering Department</h3>
+        <p>
+          Mechanical Engineering Department focuses on mechanics,
+          thermodynamics, and manufacturing processes.
+        </p>
+      </div>
+      <div ng-switch-when="Civil Engineering">
+        <h3>Civil Engineering Department</h3>
+        <p>
+          Civil Engineering Department focuses on construction, structural
+          analysis, and urban planning.
+        </p>
+      </div>
+      <div ng-switch-when="Business Administration">
+        <h3>Business Administration Department</h3>
+        <p>
+          Business Administration Department focuses on management, marketing,
+          and entrepreneurship.
+        </p>
+      </div>
+      <div ng-switch-default>
+        <h3>Please select a department to see the details.</h3>
+      </div>
     </div>
-    <hr>
+    <hr />
 
     <h2>ng-init Demo</h2>
     <div ng-init="collegeCode='CS101'; location='Angamaly'">
-        <p>College Code: {{collegeCode}}</p>
-        <p>College Location: {{location}}</p>
+      <p>College Code: {{collegeCode}}</p>
+      <p>College Location: {{location}}</p>
     </div>
-    <hr>
+    <hr />
 
-    <button ng-click="allowAdmission()">
-        Allow Admission
-    </button>
-    <br><br>
+    <button ng-click="allowAdmission()">Allow Admission</button>
+    <br /><br />
 
-    <button ng-disabled="isDisabled">
-        Deny Admission
-    </button>
-    <hr>
-    
+    <button ng-disabled="isDisabled">Deny Admission</button>
+    <hr />
+
     <h2>ng-readOnly Demo</h2>
     <label>College Id:</label>
-    <br><br>
+    <br /><br />
     <input type="text" ng-model="collegeId" ng-readonly="isReadOnly" />
-    <br><br>
+    <br /><br />
 
-    <button ng-click="toggleReadOnly()">
-        Toggle Read-Only
-    </button> 
-    <p>ReadOnly Status: {{isReadOnly}}</p>  
+    <button ng-click="toggleReadOnly()">Toggle Read-Only</button>
+    <p>ReadOnly Status: {{isReadOnly}}</p>
+    <hr />
 
+    <br /><br />
+    <h2>Student Registration</h2>
+    <form name="studentForm" novalidate>
+      <label>Student Name:</label>
+      <input type="text" name="studentName" ng-model="studentNameForm" ng-minlength="4" ng-maxlength="20" required />
+      <p
+        ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.required"
+        style="color: red"
+      >
+        Please enter a valid student name.
+      </p>
+      <p
+        ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.minlength"
+        style="color: red"
+      >
+        Student name must be at least 4 characters long.
+      </p>
+      <p
+        ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.maxlength"
+        style="color: red"
+      >
+        Student name must be no more than 20 characters long.
+      </p>
+      <br /><br />
+      <label>Student Email:</label>
+      <input type="email" name="studentEmail" ng-model="studentEmailForm" required />
+      <p
+        ng-show="studentForm.studentEmail.$touched && studentForm.studentEmail.$error.email"
+        style="color: red"
+      >
+        Please enter a valid email address.
+      </p>
+      <br /><br />
+      <label>Student Age:</label>
+      <input type="number" name="studentAge" ng-model="studentAgeForm" />
+      <br /><br />
+      <label>Student Department:</label>
+      <select
+        ng-model="studentDepartmentForm"
+        ng-options="departmentForm for departmentForm in departmentsForm"
+      ></select>
+      <br /><br />
+      <label>Gender:</label>
+      <input type="radio" ng-model="studentGenderForm" value="Male" /> Male
+      <input type="radio" ng-model="studentGenderForm" value="Female" /> Female
+      <br /><br />
+      <label>Address:</label>
+      <input type="text" ng-model="studentAddressForm" />
+      <br /><br />
+      <button type="submit">Register</button>
+      <button type="reset">Reset</button>
+    </form>
+    <hr />
+
+    <br /><br />
+    <h2>Form Status</h2>
+    <p>Valid: {{studentForm.$valid}}</p>
+    <p>Invalid: {{studentForm.$invalid}}</p>
+    <p>Pristine: {{studentForm.$pristine}}</p>
+    <p>Dirty: {{studentForm.$dirty}}</p>
+    <p>Submitted: {{studentForm.$submitted}}</p>
+
+    <br /><br />
+    <p>Student Name Valid: {{studentForm.studentName.$valid}}</p>
+    <p>Student Name Invalid: {{studentForm.studentName.$invalid}}</p>
+    <p>Student Name error required: {{studentForm.studentName.$error.required}}</p>
   </body>
 </html>
