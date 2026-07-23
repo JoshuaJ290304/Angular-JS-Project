@@ -150,7 +150,7 @@
         ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.required"
         style="color: red"
       >
-        Please enter a valid student name.
+        Student name should not be empty.
       </p>
       <p
         ng-show="studentForm.studentName.$touched && studentForm.studentName.$error.minlength"
@@ -168,19 +168,52 @@
       <label>Student Email:</label>
       <input type="email" name="studentEmail" ng-model="studentEmailForm" required />
       <p
+        ng-show="studentForm.studentEmail.$touched && studentForm.studentEmail.$error.required"
+        style="color: red"
+      >
+        Email should not be empty.
+      </p>
+      <p
         ng-show="studentForm.studentEmail.$touched && studentForm.studentEmail.$error.email"
         style="color: red"
       >
         Please enter a valid email address.
       </p>
       <br /><br />
+      <label>Student Phone:</label>
+      <input type="tel" name="studentPhone" ng-model="studentPhoneForm" ng-pattern="/^[0-9]{10}$/" required />
+      <p
+        ng-show="studentForm.studentPhone.$touched && studentForm.studentPhone.$error.required"
+        style="color: red"
+      >
+        Phone number should not be empty.
+      </p>
+      <p
+        ng-show="studentForm.studentPhone.$touched && studentForm.studentPhone.$error.pattern"
+        style="color: red"
+      >
+        Please enter a valid 10-digit phone number.
+      </p>
+      <br /><br />
       <label>Student Age:</label>
-      <input type="number" name="studentAge" ng-model="studentAgeForm" />
+      <input type="number" name="studentAge" ng-model="studentAgeForm" min="18" required />
+      <p
+        ng-show="studentForm.studentAge.$touched && studentForm.studentAge.$error.required"
+        style="color: red" 
+      >
+        Age should not be empty.
+      </p>
+      <p
+        ng-show="studentForm.studentAge.$touched && studentForm.studentAge.$error.min"
+        style="color: red"
+      >
+        Age must be at least 18.
+      </p>
       <br /><br />
       <label>Student Department:</label>
       <select
-        ng-model="studentDepartmentForm"
-        ng-options="departmentForm for departmentForm in departmentsForm"
+        ng-model="selectedDepartment"
+        ng-options="department for department in departments"
       ></select>
       <br /><br />
       <label>Gender:</label>
@@ -188,7 +221,25 @@
       <input type="radio" ng-model="studentGenderForm" value="Female" /> Female
       <br /><br />
       <label>Address:</label>
-      <input type="text" ng-model="studentAddressForm" />
+      <input type="text" name="studentAddress" ng-model="studentAddressForm" ng-minlength="10" ng-maxlength="100" required />
+      <p
+        ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.required"
+        style="color: red"
+      >
+        Address should not be empty.
+      </p>
+      <p
+        ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.minlength"
+        style="color: red"
+      >
+        Address must be at least 10 characters long.
+      </p>
+      <p
+        ng-show="studentForm.studentAddress.$touched && studentForm.studentAddress.$error.maxlength"
+        style="color: red"
+      >
+        Address must be no more than 100 characters long.
+      </p>  
       <br /><br />
       <button type="submit">Register</button>
       <button type="reset">Reset</button>
